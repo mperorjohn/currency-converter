@@ -8,7 +8,7 @@ function App() {
   const [input, setInput] = useState(0);
   const [toCur, setToCur] = useState('')
   const [result, setResult] = useState('')
-  const [currencies, setCurrencies] = useState('')
+  const [currencies, setCurrencies] = useState([])
 
 
   // first function to handle select from
@@ -28,15 +28,15 @@ function App() {
   const handleResult=async()=>{
     const config = {apikey:'Z5DCFr3bOYsHuDP5owbIew5n6UKf7v1J'}
     const res = await axios.get(`https://api.apilayer.com/fixer/convert?to=${toCur}&from=${selectFrom}&amount=${input}`, config)
+  
+
     setResult(res.data.data)
-    console.log(res)
 
   }
-  const getCurrencies=async()=>{
+  const getCurrencies= async ()=>{
     const config = {headers:'apikey:Z5DCFr3bOYsHuDP5owbIew5n6UKf7v1J'}
     const res = await axios.get('https://api.apilayer.com/fixer/symbols', config)
-    console.log()
-    setCurrencies(res.data?.data?.symbols)
+    setCurrencies(res.data?.symbols)
 
   }
   useEffect(()=>{
@@ -50,14 +50,17 @@ function App() {
   // }
   return (
     <div className="App">
-      <div className="container">
+      {
+        currencies.length < 1
+        ? <div>loading... </div>
+        : (
+          <div className="container">
                 <h1>Currency Converter</h1>
                 <p className='convert_from'>Convert From</p>
               <div>
                 <select name='from' onChange={curhandler}>
-                  {console.log(currencies)}
                   {
-                    Object.keys(currencies).map((symb)=><option>{symb}</option> )
+                    Object.values(currencies).map((symb)=><option>{symb}</option> )
                   }
                 </select> 
                 <input type='number' onChange={handleInput} className='param' /><br />
@@ -67,7 +70,7 @@ function App() {
               <div >   
                 <select onChange={handleTocur}>
                   {
-                    Object.keys(result).map((symb)=><option>{symb}</option> )
+                    Object.values(currencies).map((symb)=><option>{symb}</option> )
                   }
                   
 
@@ -79,6 +82,8 @@ function App() {
                 </div>
               </div>
           </div>
+        )
+      }
       </div>
   );
 }
