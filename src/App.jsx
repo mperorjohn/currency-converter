@@ -20,8 +20,10 @@ function App() {
     setInput(e.target.value)
   }
   // third function to handle tocur 
-  const handleTocur=(e)=>{
-    setToCur(e.target.value)
+  const handleTocur=(value)=>{
+  
+    setToCur(value.key)
+    console.log(value)
 
   }
   // fourth function to hande return result 
@@ -36,7 +38,13 @@ function App() {
   const getCurrencies= async ()=>{
     const config = {headers:'apikey:Z5DCFr3bOYsHuDP5owbIew5n6UKf7v1J'}
     const res = await axios.get('https://api.apilayer.com/fixer/symbols', config)
-    setCurrencies(res.data?.symbols)
+    const currs = (res.data.symbols)
+    const arr = []
+   for( const [key,value] of Object.entries(currs)){
+    const obj = {key,value}
+    arr.push(obj)
+   }
+    setCurrencies(arr)
 
   }
   useEffect(()=>{
@@ -60,7 +68,7 @@ function App() {
               <div>
                 <select name='from' onChange={curhandler}>
                   {
-                    Object.values(currencies).map((symb)=><option>{symb}</option> )
+                    currencies.map((symb)=><option keys={symb.value}>{symb.value}</option> )
                   }
                 </select> 
                 <input type='number' onChange={handleInput} className='param' /><br />
@@ -68,9 +76,9 @@ function App() {
               </div>
               <p className='to'>To</p>
               <div >   
-                <select onChange={handleTocur}>
+                <select name='to' onChange={(value) => handleTocur(value)}>
                   {
-                    Object.values(currencies).map((symb)=><option>{symb}</option> )
+                   currencies.map((symb)=><option value={symb} keys={`${symb.value}1`}>{symb.value}</option> )
                   }
                   
 
