@@ -1,6 +1,6 @@
 import './App.css';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   // Defining the first state for input
@@ -28,18 +28,20 @@ function App() {
   const handleResult=async()=>{
     const config = {apikey:'Z5DCFr3bOYsHuDP5owbIew5n6UKf7v1J'}
     const res = await axios.get(`https://api.apilayer.com/fixer/convert?to=${toCur}&from=${selectFrom}&amount=${input}`, config)
-    setResult(res)
+    setResult(res.data.data)
     console.log(res)
 
   }
   const getCurrencies=async()=>{
-    const config = {apikey:'Z5DCFr3bOYsHuDP5owbIew5n6UKf7v1J'}
-    const res = await axios.get('https://api.apilayer.com/fixer/sybol', config)
-    setResult(res)
-    console.log(res)
+    const config = {headers:'apikey:Z5DCFr3bOYsHuDP5owbIew5n6UKf7v1J'}
+    const res = await axios.get('https://api.apilayer.com/fixer/symbols', config)
+    console.log()
+    setCurrencies(res.data?.data?.symbols)
 
   }
-
+  useEffect(()=>{
+    getCurrencies()
+  },[])
 
   
 
@@ -53,26 +55,27 @@ function App() {
                 <p className='convert_from'>Convert From</p>
               <div>
                 <select name='from' onChange={curhandler}>
-                  <option>Country</option> 
-                  <option>Select two</option>     
-                  <option>Select ten</option>   
-
+                  {console.log(currencies)}
+                  {
+                    Object.keys(currencies).map((symb)=><option>{symb}</option> )
+                  }
                 </select> 
-                <input type='number' onChange={handleInput} name='from' className='param' /><br />
+                <input type='number' onChange={handleInput} className='param' /><br />
 
               </div>
               <p className='to'>To</p>
               <div >   
                 <select onChange={handleTocur}>
-                  <option>Country</option> 
-                  <option>Select two</option>     
-                  <option>Select ten</option>   
+                  {
+                    Object.keys(result).map((symb)=><option>{symb}</option> )
+                  }
+                  
 
                 </select>
                 <input type='number' className='param' />
                 <div>
 
-                <button type="button" className='convert' onclick={handleResult} disabled={input === ''}>Convert</button>
+                <button type="button" className='convert' onClick={handleResult} disabled={input === ''}>Convert</button>
                 </div>
               </div>
           </div>
