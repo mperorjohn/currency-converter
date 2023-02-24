@@ -20,10 +20,10 @@ function App() {
     setInput(e.target.value)
   }
   // third function to handle tocur 
-  const handleTocur=(value)=>{
+  const handleTocur=(e)=>{
   
-    setToCur(value.key)
-    console.log(value)
+    // setToCur(value.key)
+    console.log(e)
 
   }
   // fourth function to hande return result 
@@ -68,7 +68,7 @@ function App() {
               <div>
                 <select name='from' onChange={curhandler}>
                   {
-                    currencies.map((symb)=><option keys={symb.value}>{symb.value}</option> )
+                    currencies.map((symb=><option value={symb.key} keys={symb.value}>{symb.value}</option> ))
                   }
                 </select> 
                 <input type='number' onChange={handleInput} className='param' /><br />
@@ -76,9 +76,9 @@ function App() {
               </div>
               <p className='to'>To</p>
               <div >   
-                <select name='to' onChange={(value) => handleTocur(value)}>
+                <select name='to' onChange={handleTocur}>
                   {
-                   currencies.map((symb)=><option value={symb} keys={`${symb.value}1`}>{symb.value}</option> )
+                   currencies.map((symb)=><option value={symb.key} keys={`${symb.value}1`}>{symb.value}</option> )
                   }
                   
 
