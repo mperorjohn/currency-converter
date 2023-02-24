@@ -22,21 +22,22 @@ function App() {
   // third function to handle tocur 
   const handleTocur=(e)=>{
   
-    // setToCur(value.key)
-    console.log(e)
+    setToCur(e.target.value)
+    // console.log(e)
 
   }
   // fourth function to hande return result 
+  const config = {headers:'apikey:Z5DCFr3bOYsHuDP5owbIew5n6UKf7v1J'}
   const handleResult=async()=>{
-    const config = {apikey:'Z5DCFr3bOYsHuDP5owbIew5n6UKf7v1J'}
+    // const config = {headers:'Z5DCFr3bOYsHuDP5owbIew5n6UKf7v1J'}
     const res = await axios.get(`https://api.apilayer.com/fixer/convert?to=${toCur}&from=${selectFrom}&amount=${input}`, config)
   
-
-    setResult(res.data.data)
+    console.log(res)
+    setResult(res.data)
 
   }
   const getCurrencies= async ()=>{
-    const config = {headers:'apikey:Z5DCFr3bOYsHuDP5owbIew5n6UKf7v1J'}
+    
     const res = await axios.get('https://api.apilayer.com/fixer/symbols', config)
     const currs = (res.data.symbols)
     const arr = []
@@ -67,6 +68,7 @@ function App() {
                 <p className='convert_from'>Convert From</p>
               <div>
                 <select name='from' onChange={curhandler}>
+                  <option disabled>Select Country</option>
                   {
                     currencies.map((symb=><option value={symb.key} keys={symb.value}>{symb.value}</option> ))
                   }
@@ -77,13 +79,15 @@ function App() {
               <p className='to'>To</p>
               <div >   
                 <select name='to' onChange={handleTocur}>
+                <option disabled>Select Country</option>
                   {
                    currencies.map((symb)=><option value={symb.key} keys={`${symb.value}1`}>{symb.value}</option> )
                   }
                   
 
                 </select>
-                <input type='number' className='param' />
+                <input type='number' value={result.result} className='param' />
+                {result.info && <div> Conversion rate from {selectFrom} to {toCur} is {result.info.rate} as at {result.date}. However rate changes unpredictably </div>}
                 <div>
 
                 <button type="button" className='convert' onClick={handleResult} disabled={input === ''}>Convert</button>
