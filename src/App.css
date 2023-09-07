@@ -1,88 +1,10 @@
-.App {
-  text-align: center;
-  background-color: #61dafb;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  display: flex;
-  margin-left: 230px;
-  margin-top: 170px;
-  margin-bottom: 170px;
-  border-radius: 30px;
-  margin-right: 170px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-}
-h1{
-  color: #FFFF;
-}
-select{
-  padding: 10px;
-  background-color: #FFFF;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border: none;
-  outline: none;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-}
-.container{
-  padding-top: 40px;
-  padding-right: 20px;
-  padding-left: 20px;
-  padding-bottom: 40px;
-  background-color: #61dafb;
-  /* width: 40%; */
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-
-}
-.param{
-  padding:11px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border: none;
-  outline:none;
-  /* margin-top:10px; */
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-
-}
-.outPut{
-  width: 100%;
-  padding: 10px;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border: none;
-  outline: none;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-
-}
-button{
-  padding: 10px;
-  background-color: white;
-  outline: none;
-  border: none;
-  border-radius: 8px;
-  margin-top: 10px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-}
-button:hover{
-  background-color: #ffffffb0;
-  transition: 0.4s;
-}
-.to{
-  font-weight: bold;
-  font-size: 20px;
-}
-.convert_from{
-  font-weight: bold;
-  font-size: 20px;
-}
-:disabled{
-  cursor: not-allowed;
+.background-container::before {
+  content: "";
+  background: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100svw;
+  height: 100vh;
+  z-index: 1; /* Ensure the overlay is above the background image */
 }
