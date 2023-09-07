@@ -1,6 +1,7 @@
 // import "./App.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 import {
   Box,
@@ -70,6 +71,11 @@ const Convert = () => {
   // }
   return (
     <Stack mt={"44"} bgImage={"url=''"}>
+        <motion.div 
+        initial={{opacity:0, y:-70}}
+        animate={{opacity:1, y:0}}
+        transition={{delay:1.2, type:'spring'}}
+        >
       {/* {currencies.length < 1 ? (
         <Container justifyContent={'center'}>
           <CircularProgress isIndeterminate={"false"} color="whatsapp.200" />
@@ -173,6 +179,7 @@ const Convert = () => {
         </Stack>
       </Container>
       )};
+      </motion.div>
     </Stack>
   );
 };
