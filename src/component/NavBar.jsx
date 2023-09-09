@@ -31,16 +31,16 @@ export const NavBar = () => {
           listStyleType={"none"}
         >
           <ListItem>
-            <Link to={"/"}>Home</Link>
+            <Link to={"/"}>Home |</Link>
           </ListItem>
           <ListItem>
-            <Link to={"convert"}>Convert</Link>
+            <Link to={"convert"}>Convert |</Link>
           </ListItem>
           <ListItem>
-            <Link>Prices</Link>
+            <Link>Prices |</Link>
           </ListItem>
           <ListItem>
-            <Link to={"stock"}>Stock</Link>
+            <Link to={"stock"}>Stock |</Link>
           </ListItem>
         </UnorderedList>
       </Box>
