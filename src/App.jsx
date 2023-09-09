@@ -6,6 +6,7 @@ import Convert from "./pages/Convert";
 import "./App.css";
 import {NavBar} from "./component/NavBar";
 import Stock from "./pages/Stock";
+import {Prices}  from "./pages/Prices";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="convert" element={<Convert />} />
           <Route path="stock" element={<Stock />} />
+          <Route path="prices" element={<Prices/>}/>
         </Routes>
       </Stack>
     </Router>

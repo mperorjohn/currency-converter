@@ -30,16 +30,16 @@ export const NavBar = () => {
           gap={4}
           listStyleType={"none"}
         >
-          <ListItem>
+          <ListItem fontWeight={"bold"}>
             <Link to={"/"}>Home |</Link>
           </ListItem>
-          <ListItem>
+          <ListItem fontWeight={"bold"}>
             <Link to={"convert"}>Convert |</Link>
           </ListItem>
-          <ListItem>
-            <Link>Prices |</Link>
+          <ListItem fontWeight={"bold"}>
+            <Link to={'prices'}>Prices |</Link>
           </ListItem>
-          <ListItem>
+          <ListItem fontWeight={"bold"}>
             <Link to={"stock"}>Stock |</Link>
           </ListItem>
         </UnorderedList>

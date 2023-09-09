@@ -73,11 +73,11 @@ const Convert = () => {
   }, [config]);
 
   return (
-    <Stack mt={"40"} bgImage={"url=''"}>
+    <Stack mt={"16"} bgImage={"url=''"} blur={"3xl"}>
       <motion.div
         initial={{ opacity: 0, y: -70 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.1, type: "spring" }}
+        animate={{ opacity: 2, y: 0 }}
+        transition={{ type: "spring" }}
       >
         {/* {currencies.length < 1 ? (
         <Flex justify={'center'}>
@@ -96,15 +96,15 @@ const Convert = () => {
             <Flex flexDirection={"row"}>
               <Select
                 variant={"filled"}
-                bg={"whatsapp.200"}
+                bg={"green"}
                 color={"white"}
                 onChange={curhandler}
                 borderRight={"none"}
                 borderRightRadius={"0"}
                 placeholder="From"
                 fontWeight={"bold"}
-                _focus={{ bg: "whatsapp.200" }}
-                _hover={{ bg: "whatsapp.200" }}
+                _focus={{ bg: "green" }}
+                _hover={{ bg: "green.600" }}
               >
                 <option disabled>Select Country</option>
                 {currencies.map((symb) => (
@@ -115,12 +115,14 @@ const Convert = () => {
               </Select>
               <Input
                 type="number"
-                onChange={handleInput}
                 borderLeftRadius={"0"}
-                variant={"outline"}
-                _focus={{ border: "none", outline: "none" }}
                 color={"white"}
                 fontWeight={"bold"}
+                variant={"outline"}
+                border={"1px"}
+                borderLeft={"none"}
+                onChange={handleInput}
+                _focus={{ border: "none", outline: "none" }}
               />
             </Flex>
 
@@ -133,16 +135,16 @@ const Convert = () => {
             <Flex>
               <Select
                 variant={"filled"}
-                bg={"whatsapp.200"}
+                bg={"green"}
                 name="to"
                 onChange={handleTocur}
-                _focus={{ border: "none", bg: "whatsapp.200", outline: "none" }}
+                _focus={{ border: "none", bg: "green.600", outline: "none" }}
                 color={"white"}
                 fontWeight={"bold"}
                 placeholder="To"
                 borderRight={"none"}
                 borderRightRadius={"0"}
-                _hover={{ bg: "whatsapp.200" }}
+                _hover={{ bg: "green.600" }}
               >
                 <option disabled>Select Country</option>
                 {currencies.map((symb) => (
@@ -158,6 +160,9 @@ const Convert = () => {
                 fontWeight={"bold"}
                 value={result.result}
                 variant={"outline"}
+                border={"1px"}
+                borderLeft={"none"}
+                _focus={{ border: "none", outline: "none" }}
               />
             </Flex>
 
@@ -172,12 +177,13 @@ const Convert = () => {
             )}
             <Flex mt={8} justify={"center"}>
               <Button
-                bg={"whatsapp.200"}
+                bg={"green"}
                 color={"white"}
                 type="button"
                 onClick={handleResult}
                 isDisabled={!input}
                 width={"100%"}
+                _hover={{ bg: "green.600" }}
               >
                 {result.info && <Spinner size={"lg"} color="white" />}
                 Convert
@@ -187,6 +193,17 @@ const Convert = () => {
         </Container>
         )};
       </motion.div>
+      <Container>
+        <Box padding={4} bg={"white"}>
+          <Heading color={"blue.200"} textAlign={"center"}>
+            Banner A
+            <Text as={"span"} color={"yellow.200"}>
+              d
+            </Text>
+            <Text as={'span'} color={'red'}>s</Text>
+          </Heading>
+        </Box>
+      </Container>
     </Stack>
   );
 };
